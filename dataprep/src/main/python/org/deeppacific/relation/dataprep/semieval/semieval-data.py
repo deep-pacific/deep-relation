@@ -1,4 +1,4 @@
-""" This is the data model class for holding SemiEval-2010-task8 data """
+""" This is the data model class for holding SemiEval-2010-task8 training and testing data """
 
 
 class SemiEvalData(object):
