@@ -38,7 +38,8 @@ class SemiEvalDataIO(object):
                 sentence = e2_pattern.sub(e2, e1_pattern.sub(e1, raw_sentence))
                 bag_of_words = sentence.split(' ')
 
-                data.append(SemiEvalData(int(record_id), raw_sentence, bag_of_words, e1, e2, relation))
+                data.append(SemiEvalData(int(record_id), raw_sentence,
+                                         bag_of_words, e1, e2, relation))
         return data
 
     @staticmethod
@@ -47,7 +48,8 @@ class SemiEvalDataIO(object):
         Load all training data
         :return: the loaded training data in SemiEvalData format
         """
-        return SemiEvalDataIO._load_data("src/main/resources/semieval-2018-task8/train/TRAIN_FILE.TXT")
+        return SemiEvalDataIO._load_data(
+            "src/main/resources/semieval-2018-task8/train/TRAIN_FILE.TXT")
 
     @staticmethod
     def load_test_data():
@@ -55,5 +57,6 @@ class SemiEvalDataIO(object):
         Load all testing data
         :return: the loaded testing data in SemiEvalData format
         """
-        return SemiEvalDataIO._load_data("src/main/resources/semieval-2018-task8/test/TEST_FILE.TXT")
+        return SemiEvalDataIO._load_data(
+            "src/main/resources/semieval-2018-task8/test/TEST_FILE.TXT")
 

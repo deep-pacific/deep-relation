@@ -1,9 +1,10 @@
-""" This is the data model class for holding SemiEval-2010-task8 training and testing data """
+""" This is the data model class for SemiEval-2010-task8 data """
 
 
 class SemiEvalData(object):
 
-    def __init__(self, record_id, raw_sentence, bag_of_words, entity1, entity2, relation):
+    def __init__(self, record_id, raw_sentence, bag_of_words, entity1, entity2,
+                 relation):
         """
         class initiation function
         Args:
