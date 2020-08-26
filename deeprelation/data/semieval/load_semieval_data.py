@@ -27,12 +27,11 @@ class SemiEvalDataIO(object):
         return e1, e2, bag_of_words
 
     @staticmethod
-    def load_train_data():
+    def _load_data(relative_path):
         """
-        Load all training data
+        Load data based on relative path
         :return: the loaded data in SemiEvalData format
         """
-        relative_path = "resources/semieval-2018-task8/train/TRAIN_FILE.TXT"
         abs_path = Path(__file__).parent.parent.parent.parent / relative_path
 
         train_data = []
@@ -58,20 +57,43 @@ class SemiEvalDataIO(object):
         return train_data
 
     @staticmethod
+    def load_train_data():
+        """
+        Load all training data
+        :return: the loaded testing data in SemiEvalData format
+        """
+        relative_path = "resources/semieval-2018-task8/train/TRAIN_FILE.TXT"
+        return SemiEvalDataIO._load_data(relative_path)
+
+    @staticmethod
     def load_test_data():
         """
-        TODO: to be implemented
         Load all testing data
         :return: the loaded testing data in SemiEvalData format
         """
-        return None
+        relative_path = "resources/semieval-2018-task8/test/TEST_FILE.TXT"
+        return SemiEvalDataIO._load_data(relative_path)
 
 
 if __name__ == "__main__":
     train_examples = SemiEvalDataIO.load_train_data()
-    train_labels = set(map(lambda x: x.get_relation(), train_examples))
+    train_relations = set(map(lambda x: x.get_relation(), train_examples))
+    train_relation_types = \
+        set(map(lambda x: x.get_relation_type(), train_examples))
     print("total training examples: " + str(len(train_examples)))
-    print("total training labels: " + str(len(train_labels)))
+    print("total training relations " + str(len(train_relations)))
+    print("total training relation types " + str(len(train_relation_types)))
     print("example raw sentence: " + train_examples[0].get_raw_sentence())
-    print("example label: " + train_examples[0].get_relation())
+    print("example bag of words: " +
+          " ".join(train_examples[0].get_bag_of_words()))
+    print("example relation: " + train_examples[0].get_relation())
+    print("example relation type: " + train_examples[0].get_relation_type())
     print("example e1: " + train_examples[0].get_entity1())
+
+    test_examples = SemiEvalDataIO.load_test_data()
+    test_relations = set(map(lambda x: x.get_relation(), test_examples))
+    test_relation_types = \
+        set(map(lambda x: x.get_relation_type(), test_examples))
+    print("total testing examples: " + str(len(test_examples)))
+    print("total testing relations: " + str(len(test_relations)))
+    print("total testing relation types " + str(len(test_relation_types)))
