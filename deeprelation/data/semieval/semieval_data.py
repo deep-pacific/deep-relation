@@ -21,6 +21,7 @@ class SemiEvalData(object):
         self.entity1 = entity1
         self.entity2 = entity2
         self.relation = relation
+        self.relation_type = relation.split("(")[0]
 
     def get_record_id(self):
         return self.record_id
@@ -39,3 +40,12 @@ class SemiEvalData(object):
 
     def get_relation(self):
         return self.relation
+
+    def get_relation_type(self):
+        """
+        Get the type of the relation regardless of the entity order. For
+        example, Product-Producer(e1,e2) and Product-Producer(e2,e1) will all
+        be treated as Product-Producer
+        :return: the type of the relation
+        """
+        return self.relation_type
